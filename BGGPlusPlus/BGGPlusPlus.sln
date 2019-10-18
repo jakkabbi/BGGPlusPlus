@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGGPlusPlus.API", "BGGPlusPlus.API\BGGPlusPlus.API.csproj", "{31E202A1-C491-4DA9-9075-C4946723F666}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31E202A1-C491-4DA9-9075-C4946723F666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31E202A1-C491-4DA9-9075-C4946723F666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31E202A1-C491-4DA9-9075-C4946723F666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31E202A1-C491-4DA9-9075-C4946723F666}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE5ED75B-03CF-401B-931A-50ABECCCBF5F}
+	EndGlobalSection
+EndGlobal
