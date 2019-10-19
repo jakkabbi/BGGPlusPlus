@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using System.Linq;
 using System.IO;
 using System.Xml;
+using BGGPlusPlus.Model.BGGModels;
 
 namespace BGGPlusPlus.Domain
 {
