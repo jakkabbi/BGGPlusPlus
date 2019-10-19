@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BGGPlusPlus.Model.Models
+namespace BGGPlusPlus.Model.DataModels
 {
     public partial class GameCategory
     {

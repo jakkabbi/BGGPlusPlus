@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BGGPlusPlus.Model.Models
+namespace BGGPlusPlus.Model.DataModels
 {
     public partial class BGGPlusPlusContext : DbContext
     {
