@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BGGPlusPlus.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,8 @@ namespace BGGPlusPlus.API.Controllers
         [HttpPost]
         public async Task<IActionResult> SearchBoardGames()
         {
+            var test = new BGGApiService();
+
             throw new NotImplementedException();
 
         }
