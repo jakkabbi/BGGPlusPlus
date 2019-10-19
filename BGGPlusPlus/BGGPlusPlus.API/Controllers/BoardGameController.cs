@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BGGPlusPlus.Domain;
+using BGGPlusPlus.Model.DataModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,32 +13,42 @@ namespace BGGPlusPlus.API.Controllers
     [ApiController]
     public class BoardGameController : ControllerBase
     {
-        [HttpGet]
-        public async Task<IActionResult> GetArtists()
+        BGGPlusPlusContext _dbContext;
+        public BoardGameController(BGGPlusPlusContext bggPlusPlusContext)
         {
-            throw new NotImplementedException();
+            _dbContext = bggPlusPlusContext;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCategories()
+        public IActionResult GetArtists()
         {
-            throw new NotImplementedException();
+            var artists = _dbContext.Set<Artist>().Select(p => p);
+            return Ok(artists.ToList());
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDesigners()
+        public IActionResult GetCategories()
         {
-            throw new NotImplementedException();
+            var categories = _dbContext.Set<Category>().Select(p => p);
+            return Ok(categories.ToList()); 
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPublishers()
+        public IActionResult GetDesigners()
         {
-            throw new NotImplementedException();
+            var designers = _dbContext.Set<Designer>().Select(p => p);
+            return Ok(designers.ToList());
+        }
+
+        [HttpGet]
+        public IActionResult GetPublishers()
+        {
+            var publishers = _dbContext.Set<Publisher>().Select(p => p);
+            return Ok(publishers.ToList());
         }
 
         [HttpPost]
-        public async Task<IActionResult> SearchBoardGames()
+        public IActionResult SearchBoardGames()
         {
             var test = new BGGApiService();
 
