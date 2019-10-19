@@ -1,8 +1,6 @@
-﻿CREATE TABLE [dbo].[CATEGORY] (
+﻿CREATE TABLE [dbo].[DESIGNER] (
     [ID]       INT          NOT NULL,
-    [Category] VARCHAR (31) NULL,
+    [Designer] VARCHAR (31) NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC)
 );
-
-
 
