@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace BGGPlusPlus.Model.DataModels
 {
-    public partial class Category
+    public partial class GameArtist
     {
         public int Id { get; set; }
-        public string Category1 { get; set; }
+        public int? GameId { get; set; }
+        public int? ArtistId { get; set; }
     }
 }

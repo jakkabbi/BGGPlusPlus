@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace BGGPlusPlus.Model.DataModels
 {
-    public partial class Category
+    public partial class Artist
     {
         public int Id { get; set; }
-        public string Category1 { get; set; }
+        public string Artist1 { get; set; }
     }
 }
