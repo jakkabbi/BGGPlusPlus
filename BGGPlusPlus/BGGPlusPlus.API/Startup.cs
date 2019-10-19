@@ -27,9 +27,13 @@ namespace BGGPlusPlus.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             var connection = Configuration.GetConnectionString("Database");
-            services.AddDbContext<BGGPlusPlusContext>(options=> options.UseSqlServer(connection));
+            var local = Configuration.GetConnectionString("Local");
+            
+            services.AddControllers();
+
+            //services.AddDbContext<BGGPlusPlusContext>(options=> options.UseSqlServer(connection));
+            services.AddDbContext<BGGPlusPlusContext>(options=> options.UseSqlServer(local));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
