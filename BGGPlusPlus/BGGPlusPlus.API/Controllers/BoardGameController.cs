@@ -23,43 +23,39 @@ namespace BGGPlusPlus.API.Controllers
         [Route("getartists")]
         public IActionResult GetArtists()
         {
-            //var artists = _dbContext.Set<Artist>().Select(p => p);
-            //return Ok(artists.ToList());
-            return Ok(new List<string>());
+            var artists = _dbContext.Set<Artist>().Select(p => p);
+            return Ok(artists.ToList());
         }
 
         [HttpGet]
         [Route("getcategories")]
         public IActionResult GetCategories()
         {
-            //var categories = _dbContext.Set<Category>().Select(p => p);
-            //return Ok(categories.ToList()); 
-            return Ok(new List<string>());
+            var categories = _dbContext.Set<Category>().Select(p => p);
+            return Ok(categories.ToList());
         }
 
         [HttpGet]
         [Route("getdesigner")]
         public IActionResult GetDesigners()
         {
-            //var designers = _dbContext.Set<Designer>().Select(p => p);
-            //return Ok(designers.ToList());
-            return Ok(new List<string>());
+            var designers = _dbContext.Set<Designer>().Select(p => p);
+            return Ok(designers.ToList());
         }
 
         [HttpGet]
         [Route("getpublishers")]
         public IActionResult GetPublishers()
         {
-            //var publishers = _dbContext.Set<Publisher>().Select(p => p);
-            //return Ok(publishers.ToList());
-            return Ok(new List<string>());
+            var publishers = _dbContext.Set<Publisher>().Select(p => p);
+            return Ok(publishers.ToList());
         }
 
         [HttpPost]
         [Route("searchboardgames")]
         public IActionResult SearchBoardGames()
         {
-            var test = new BGGApiService();
+            var test = new BGGApiService(_dbContext);
 
             throw new NotImplementedException();
 
