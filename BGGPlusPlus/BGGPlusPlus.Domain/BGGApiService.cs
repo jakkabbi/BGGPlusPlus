@@ -20,7 +20,7 @@ namespace BGGPlusPlus.Domain
             XmlSerializer serializer = new XmlSerializer(typeof(Items));
 
             List<int> tempList = new List<int>();
-            for (int i = 1; i < 2; i++)
+            for (int i = 1; i < 5; i++)
                 tempList.Add(i);
 
             var endpoint = $"https://www.boardgamegeek.com/xmlapi2/thing?id={string.Join(",", tempList)}&stats=1";
@@ -39,7 +39,7 @@ namespace BGGPlusPlus.Domain
 
                         using (TextReader reader = new StringReader(data))
                         {
-                            var test = (Items)serializer.Deserialize(reader);
+                            Items test = (Items)serializer.Deserialize(reader);
 
                             return "success";
                         }

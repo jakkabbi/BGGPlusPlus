@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BGGPlusPlus.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class BoardGameController : ControllerBase
     {
         BGGPlusPlusContext _dbContext;
@@ -20,34 +20,43 @@ namespace BGGPlusPlus.API.Controllers
         }
 
         [HttpGet]
+        [Route("getartists")]
         public IActionResult GetArtists()
         {
-            var artists = _dbContext.Set<Artist>().Select(p => p);
-            return Ok(artists.ToList());
+            //var artists = _dbContext.Set<Artist>().Select(p => p);
+            //return Ok(artists.ToList());
+            return Ok(new List<string>());
         }
 
         [HttpGet]
+        [Route("getcategories")]
         public IActionResult GetCategories()
         {
-            var categories = _dbContext.Set<Category>().Select(p => p);
-            return Ok(categories.ToList()); 
+            //var categories = _dbContext.Set<Category>().Select(p => p);
+            //return Ok(categories.ToList()); 
+            return Ok(new List<string>());
         }
 
         [HttpGet]
+        [Route("getdesigner")]
         public IActionResult GetDesigners()
         {
-            var designers = _dbContext.Set<Designer>().Select(p => p);
-            return Ok(designers.ToList());
+            //var designers = _dbContext.Set<Designer>().Select(p => p);
+            //return Ok(designers.ToList());
+            return Ok(new List<string>());
         }
 
         [HttpGet]
+        [Route("getpublishers")]
         public IActionResult GetPublishers()
         {
-            var publishers = _dbContext.Set<Publisher>().Select(p => p);
-            return Ok(publishers.ToList());
+            //var publishers = _dbContext.Set<Publisher>().Select(p => p);
+            //return Ok(publishers.ToList());
+            return Ok(new List<string>());
         }
 
         [HttpPost]
+        [Route("searchboardgames")]
         public IActionResult SearchBoardGames()
         {
             var test = new BGGApiService();
