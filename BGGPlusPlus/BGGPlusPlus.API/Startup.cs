@@ -28,12 +28,10 @@ namespace BGGPlusPlus.API
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("Database");
-            var local = Configuration.GetConnectionString("Local");
             
             services.AddControllers();
 
-            //services.AddDbContext<BGGPlusPlusContext>(options=> options.UseSqlServer(connection));
-            services.AddDbContext<BGGPlusPlusContext>(options=> options.UseSqlServer(local));
+            services.AddDbContext<BGGPlusPlusContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
