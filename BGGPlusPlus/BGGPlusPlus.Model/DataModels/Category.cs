@@ -11,7 +11,7 @@ namespace BGGPlusPlus.Model.DataModels
         }
 
         public int Id { get; set; }
-        public int? Category1 { get; set; }
+        public string Category1 { get; set; }
 
         public virtual ICollection<GameCategory> GameCategory { get; set; }
     }

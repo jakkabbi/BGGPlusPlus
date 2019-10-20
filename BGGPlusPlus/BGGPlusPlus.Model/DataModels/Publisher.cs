@@ -11,7 +11,7 @@ namespace BGGPlusPlus.Model.DataModels
         }
 
         public int Id { get; set; }
-        public string Category { get; set; }
+        public string Publisher1 { get; set; }
 
         public virtual ICollection<GamePublisher> GamePublisher { get; set; }
     }
