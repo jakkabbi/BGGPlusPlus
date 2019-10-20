@@ -24,7 +24,7 @@ namespace BGGPlusPlus.Domain
 
         public List<string> GetCsvValues()
         {
-            using (var reader = new StreamReader(@"\bgglds.csv"))
+            using (var reader = new StreamReader(@"..\bggIds.csv"))
             {
                 List<string> csvContent = new List<string>();
                 while(!reader.EndOfStream)
