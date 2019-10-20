@@ -29,8 +29,6 @@ namespace BGGPlusPlus.Model.DataModels
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=bggplusplus.cmfbfjhabcjs.us-east-1.rds.amazonaws.com,1433;Database=BGGPlusPlus;User Id=admin; Password=8cMLbYfOVtGFSVrVn9wb");
             }
         }
 
