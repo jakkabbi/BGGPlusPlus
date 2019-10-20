@@ -30,7 +30,7 @@ namespace BGGPlusPlus.Model.DataModels
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=LT-5CG5174CJK\\SQLEXPRESSBGG;Database=BGGPlusPlus;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Data Source=bggplusplus.cmfbfjhabcjs.us-east-1.rds.amazonaws.com,1433;Database=BGGPlusPlus;User Id=admin; Password=8cMLbYfOVtGFSVrVn9wb");
             }
         }
 
@@ -58,10 +58,7 @@ namespace BGGPlusPlus.Model.DataModels
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Category1)
-                    .HasColumnName("Category")
-                    .HasMaxLength(31)
-                    .IsUnicode(false);
+                entity.Property(e => e.Category1).HasColumnName("Category");
             });
 
             modelBuilder.Entity<Designer>(entity =>
@@ -89,6 +86,16 @@ namespace BGGPlusPlus.Model.DataModels
                 entity.Property(e => e.ArtistId).HasColumnName("ArtistID");
 
                 entity.Property(e => e.GameId).HasColumnName("GameID");
+
+                entity.HasOne(d => d.Artist)
+                    .WithMany(p => p.GameArtist)
+                    .HasForeignKey(d => d.ArtistId)
+                    .HasConstraintName("FK__GAME_ARTI__Artis__46E78A0C");
+
+                entity.HasOne(d => d.Game)
+                    .WithMany(p => p.GameArtist)
+                    .HasForeignKey(d => d.GameId)
+                    .HasConstraintName("FK__GAME_ARTI__GameI__45F365D3");
             });
 
             modelBuilder.Entity<GameCategory>(entity =>
@@ -99,9 +106,19 @@ namespace BGGPlusPlus.Model.DataModels
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryId).HasColumnName("Category_ID");
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
-                entity.Property(e => e.GameId).HasColumnName("Game_ID");
+                entity.Property(e => e.GameId).HasColumnName("GameID");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.GameCategory)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK__GAME_CATE__Categ__5070F446");
+
+                entity.HasOne(d => d.Game)
+                    .WithMany(p => p.GameCategory)
+                    .HasForeignKey(d => d.GameId)
+                    .HasConstraintName("FK__GAME_CATE__GameI__49C3F6B7");
             });
 
             modelBuilder.Entity<GameDesigner>(entity =>
@@ -115,6 +132,16 @@ namespace BGGPlusPlus.Model.DataModels
                 entity.Property(e => e.DesignerId).HasColumnName("DesignerID");
 
                 entity.Property(e => e.GameId).HasColumnName("GameID");
+
+                entity.HasOne(d => d.Designer)
+                    .WithMany(p => p.GameDesigner)
+                    .HasForeignKey(d => d.DesignerId)
+                    .HasConstraintName("FK__GAME_DESI__Desig__52593CB8");
+
+                entity.HasOne(d => d.Game)
+                    .WithMany(p => p.GameDesigner)
+                    .HasForeignKey(d => d.GameId)
+                    .HasConstraintName("FK__GAME_DESI__GameI__5165187F");
             });
 
             modelBuilder.Entity<GamePublisher>(entity =>
@@ -128,6 +155,16 @@ namespace BGGPlusPlus.Model.DataModels
                 entity.Property(e => e.GameId).HasColumnName("GameID");
 
                 entity.Property(e => e.PublisherId).HasColumnName("PublisherID");
+
+                entity.HasOne(d => d.Game)
+                    .WithMany(p => p.GamePublisher)
+                    .HasForeignKey(d => d.GameId)
+                    .HasConstraintName("FK__GAME_PUBL__GameI__534D60F1");
+
+                entity.HasOne(d => d.Publisher)
+                    .WithMany(p => p.GamePublisher)
+                    .HasForeignKey(d => d.PublisherId)
+                    .HasConstraintName("FK__GAME_PUBL__Publi__5441852A");
             });
 
             modelBuilder.Entity<Games>(entity =>
