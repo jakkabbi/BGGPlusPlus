@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BGGPlusPlus.Domain", "BGGPl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BGGPlusPlus.API", "BGGPlusPlus.API\BGGPlusPlus.API.csproj", "{A0C43C4D-B7F2-4114-A152-ABF586F76B6E}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BGGPlusPlus", "BGGPlusPlus\BGGPlusPlus.sqlproj", "{77D70611-342D-44D4-A242-41D5F5CDA42E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGGPlusPlus.Domain.Test", "BGGPlusPlus.Domain.Test\BGGPlusPlus.Domain.Test.csproj", "{3D92D53E-61DB-4466-858C-26D7608EDF03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BGGPlusPlus.Domain.Test", "BGGPlusPlus.Domain.Test\BGGPlusPlus.Domain.Test.csproj", "{3D92D53E-61DB-4466-858C-26D7608EDF03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,12 +29,6 @@ Global
 		{A0C43C4D-B7F2-4114-A152-ABF586F76B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C43C4D-B7F2-4114-A152-ABF586F76B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C43C4D-B7F2-4114-A152-ABF586F76B6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77D70611-342D-44D4-A242-41D5F5CDA42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77D70611-342D-44D4-A242-41D5F5CDA42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77D70611-342D-44D4-A242-41D5F5CDA42E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{77D70611-342D-44D4-A242-41D5F5CDA42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77D70611-342D-44D4-A242-41D5F5CDA42E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77D70611-342D-44D4-A242-41D5F5CDA42E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{3D92D53E-61DB-4466-858C-26D7608EDF03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D92D53E-61DB-4466-858C-26D7608EDF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D92D53E-61DB-4466-858C-26D7608EDF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
