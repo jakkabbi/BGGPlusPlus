@@ -8,5 +8,8 @@ namespace BGGPlusPlus.Model.DataModels
         public int Id { get; set; }
         public int GameId { get; set; }
         public int MechanicId { get; set; }
+
+        public virtual Games Game { get; set; }
+        public virtual Mechanic Mechanic { get; set; }
     }
 }

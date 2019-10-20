@@ -31,6 +31,8 @@ namespace BGGPlusPlus.API.Controllers
         [Route("getcategories")]
         public IActionResult GetCategories()
         {
+            //BGGApiService bggApiService = new BGGApiService(_dbContext);
+            //bggApiService.FillDatabase(bggApiService.GetCsvValues());
             var categories = _dbContext.Set<Category>().Select(p => p);
             return Ok(categories.ToList());
         }

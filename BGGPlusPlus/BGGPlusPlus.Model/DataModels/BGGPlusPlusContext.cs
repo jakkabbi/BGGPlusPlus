@@ -36,6 +36,8 @@ namespace BGGPlusPlus.Model.DataModels
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+
             modelBuilder.Entity<Artist>(entity =>
             {
                 entity.ToTable("ARTIST");
@@ -85,9 +87,7 @@ namespace BGGPlusPlus.Model.DataModels
             {
                 entity.ToTable("GAME_ARTIST");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ArtistId).HasColumnName("ArtistID");
 
@@ -97,22 +97,20 @@ namespace BGGPlusPlus.Model.DataModels
                     .WithMany(p => p.GameArtist)
                     .HasForeignKey(d => d.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__GAME_ARTI__Artis__46E78A0C");
+                    .HasConstraintName("FK__GAME_ARTI__Artis__70DDC3D8");
 
                 entity.HasOne(d => d.Game)
                     .WithMany(p => p.GameArtist)
                     .HasForeignKey(d => d.GameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__GAME_ARTI__GameI__45F365D3");
+                    .HasConstraintName("FK__GAME_ARTI__GameI__6FE99F9F");
             });
 
             modelBuilder.Entity<GameCategory>(entity =>
             {
                 entity.ToTable("GAME_CATEGORY");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
@@ -122,22 +120,20 @@ namespace BGGPlusPlus.Model.DataModels
                     .WithMany(p => p.GameCategory)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__GAME_CATE__Categ__5070F446");
+                    .HasConstraintName("FK__GAME_CATE__Categ__72C60C4A");
 
                 entity.HasOne(d => d.Game)
                     .WithMany(p => p.GameCategory)
                     .HasForeignKey(d => d.GameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__GAME_CATE__GameI__49C3F6B7");
+                    .HasConstraintName("FK__GAME_CATE__GameI__71D1E811");
             });
 
             modelBuilder.Entity<GameDesigner>(entity =>
             {
                 entity.ToTable("GAME_DESIGNER");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.DesignerId).HasColumnName("DesignerID");
 
@@ -147,35 +143,43 @@ namespace BGGPlusPlus.Model.DataModels
                     .WithMany(p => p.GameDesigner)
                     .HasForeignKey(d => d.DesignerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__GAME_DESI__Desig__52593CB8");
+                    .HasConstraintName("FK__GAME_DESI__Desig__74AE54BC");
 
                 entity.HasOne(d => d.Game)
                     .WithMany(p => p.GameDesigner)
                     .HasForeignKey(d => d.GameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__GAME_DESI__GameI__5165187F");
+                    .HasConstraintName("FK__GAME_DESI__GameI__73BA3083");
             });
 
             modelBuilder.Entity<GameMechanic>(entity =>
             {
                 entity.ToTable("GAME_MECHANIC");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.GameId).HasColumnName("GameID");
 
                 entity.Property(e => e.MechanicId).HasColumnName("MechanicID");
+
+                entity.HasOne(d => d.Game)
+                    .WithMany(p => p.GameMechanic)
+                    .HasForeignKey(d => d.GameId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__GAME_MECH__GameI__778AC167");
+
+                entity.HasOne(d => d.Mechanic)
+                    .WithMany(p => p.GameMechanic)
+                    .HasForeignKey(d => d.MechanicId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__GAME_MECH__Mecha__787EE5A0");
             });
 
             modelBuilder.Entity<GamePublisher>(entity =>
             {
                 entity.ToTable("GAME_PUBLISHER");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.GameId).HasColumnName("GameID");
 
@@ -185,13 +189,13 @@ namespace BGGPlusPlus.Model.DataModels
                     .WithMany(p => p.GamePublisher)
                     .HasForeignKey(d => d.GameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__GAME_PUBL__GameI__534D60F1");
+                    .HasConstraintName("FK__GAME_PUBL__GameI__75A278F5");
 
                 entity.HasOne(d => d.Publisher)
                     .WithMany(p => p.GamePublisher)
                     .HasForeignKey(d => d.PublisherId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__GAME_PUBL__Publi__5441852A");
+                    .HasConstraintName("FK__GAME_PUBL__Publi__76969D2E");
             });
 
             modelBuilder.Entity<Games>(entity =>
@@ -222,6 +226,11 @@ namespace BGGPlusPlus.Model.DataModels
                 entity.Property(e => e.MinPlayers).HasColumnName("Min_Players");
 
                 entity.Property(e => e.NumReviews).HasColumnName("Num_Reviews");
+
+                entity.Property(e => e.PictureUrl)
+                    .HasColumnName("Picture_URL")
+                    .HasMaxLength(127)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PlaytimeMax).HasColumnName("Playtime_Max");
 
@@ -259,10 +268,6 @@ namespace BGGPlusPlus.Model.DataModels
                     .HasMaxLength(127)
                     .IsUnicode(false);
             });
-
-            OnModelCreatingPartial(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

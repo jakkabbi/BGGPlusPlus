@@ -10,6 +10,7 @@ namespace BGGPlusPlus.Model.DataModels
             GameArtist = new HashSet<GameArtist>();
             GameCategory = new HashSet<GameCategory>();
             GameDesigner = new HashSet<GameDesigner>();
+            GameMechanic = new HashSet<GameMechanic>();
             GamePublisher = new HashSet<GamePublisher>();
         }
 
@@ -26,10 +27,12 @@ namespace BGGPlusPlus.Model.DataModels
         public double? Complexity { get; set; }
         public int? AgeMin { get; set; }
         public int? AgeMax { get; set; }
+        public string PictureUrl { get; set; }
 
         public virtual ICollection<GameArtist> GameArtist { get; set; }
         public virtual ICollection<GameCategory> GameCategory { get; set; }
         public virtual ICollection<GameDesigner> GameDesigner { get; set; }
+        public virtual ICollection<GameMechanic> GameMechanic { get; set; }
         public virtual ICollection<GamePublisher> GamePublisher { get; set; }
     }
 }

@@ -38,10 +38,12 @@ namespace BGGPlusPlus.Domain
         public void FillDatabase(List<string> ids)
         {
             string payload = null;
-            for (int i = 0; i < (ids.Count / 1160); i++)
+            for (int i = 0; i < (ids.Count / 1160) + 1; i++)
             {
-                payload = string.Join(",", ids, i * 1160, 1160);
-                Insert(GetBGGApi(payload).Result);
+                payload = String.Join(",", ids.ToArray(), i * 1160, 1160);
+
+                var temp = GetBGGApi(payload).Result;
+                Insert(temp);
             }
         }
 
@@ -73,34 +75,53 @@ namespace BGGPlusPlus.Domain
                     GameDesc = item.Description,
                     PlaytimeMin = int.Parse(item.Minplaytime.Value),
                     PlaytimeMax = int.Parse(item.Maxplaytime.Value),
-                    ReviewScore = int.Parse(item.Statistics.Ratings.Average.Value),
+                    ReviewScore = double.Parse(item.Statistics.Ratings.Average.Value),
                     NumReviews = int.Parse(item.Statistics.Ratings.Usersrated.Value),
-                    Complexity = int.Parse(item.Statistics.Ratings.Averageweight.Value),
+                    Complexity = double.Parse(item.Statistics.Ratings.Averageweight.Value),
                     AgeMin = int.Parse(item.Minage.Value),
-                    AgeMax = 99
+                    AgeMax = 99,
+                    PictureUrl = item.Thumbnail
                 };
 
-                foreach(Link link in item.Link)
+                foreach (Link link in item.Link)
                 {
-                    if(link.Type.Contains("mechanic"))
-                    {
-                        Mechanic mechanic = new Mechanic
-                        {
-                            Id = int.Parse(link.Id),
-                            Mechanic1 = link.Value
-                        };
-                        if (_dbContext.Mechanic.Find(mechanic.Id) == null)
-                            _dbContext.Add(mechanic);
-                    }
-                    if(link.Type.Contains("category"))
+                    if (link.Type.Contains("category"))
                     {
                         Category category = new Category
                         {
                             Id = int.Parse(link.Id),
                             Category1 = link.Value
                         };
-                        if(_dbContext.Category.Find(category.Id) == null)
+                        GameCategory gameCategory = new GameCategory
+                        {
+                            GameId = game.Id,
+                            CategoryId = category.Id
+                        };
+
+                        if (!_dbContext.GameCategory.Contains(gameCategory))
+                            _dbContext.Add(gameCategory);
+
+                        if (!_dbContext.Category.Contains(category))
                             _dbContext.Add(category);
+                    }
+                    else if (link.Type.Contains("mechanic"))
+                    {
+                        Mechanic mechanic = new Mechanic
+                        {
+                            Id = int.Parse(link.Id),
+                            Mechanic1 = link.Value
+                        };
+                        GameMechanic gameMechanic = new GameMechanic
+                        {
+                            GameId = game.Id,
+                            MechanicId = mechanic.Id
+                        };
+
+                        if (!_dbContext.GameMechanic.Contains(gameMechanic))
+                            _dbContext.Add(gameMechanic);
+
+                        if (!_dbContext.Mechanic.Contains(mechanic))
+                            _dbContext.Add(mechanic);
                     }
                     else if (link.Type.Contains("publish"))
                     {
@@ -109,36 +130,59 @@ namespace BGGPlusPlus.Domain
                             Id = int.Parse(link.Id),
                             Publisher1 = link.Value
                         };
-                        
-                        if(_dbContext.Category.Find(publisher.Id) == null)
+
+                        GamePublisher gamePublisher = new GamePublisher
+                        {
+                            GameId = game.Id,
+                            PublisherId = publisher.Id
+                        };
+                        if (!_dbContext.GamePublisher.Contains(gamePublisher))
+                            _dbContext.Add(gamePublisher);
+    
+                        if (!_dbContext.Publisher.Contains(publisher))
                             _dbContext.Add(publisher);
                     }
-                    else if(link.Type.Contains("design"))
+                    else if (link.Type.Contains("design"))
                     {
                         Designer designer = new Designer
                         {
                             Id = int.Parse(link.Id),
                             Designer1 = link.Value
                         };
-                        
-                        if(_dbContext.Category.Find(designer.Id) == null)
+                        GameDesigner gameDesigner = new GameDesigner
+                        {
+                            GameId = game.Id,
+                            DesignerId = designer.Id
+                        };
+
+                        if (!_dbContext.GameDesigner.Contains(gameDesigner))
+                            _dbContext.Add(gameDesigner);
+
+                        if (!_dbContext.Designer.Contains(designer))
                             _dbContext.Add(designer);
                     }
-                    else if(link.Type.Contains("artist"))
+                    else if (link.Type.Contains("artist"))
                     {
                         Artist artist = new Artist
                         {
                             Id = int.Parse(link.Id),
                             Artist1 = link.Value
                         };
-                        
-                        if(_dbContext.Category.Find(artist.Id) == null)
+                        GameArtist gameArtist = new GameArtist
+                        {
+                            GameId = game.Id,
+                            ArtistId = artist.Id
+                        };
+                        if (!_dbContext.GameArtist.Contains(gameArtist))
+                            _dbContext.Add(gameArtist);
+                        if (!_dbContext.Artist.Contains(artist))
                             _dbContext.Add(artist);
                     }
                 }
-                _dbContext.Add(game);
+                if(!_dbContext.Games.Contains(game))
+                    _dbContext.Add(game);
+                _dbContext.SaveChanges();
             }
-            _dbContext.SaveChanges();
         }
 
         public async Task<List<Item>> GetBGGApi(string payload)
