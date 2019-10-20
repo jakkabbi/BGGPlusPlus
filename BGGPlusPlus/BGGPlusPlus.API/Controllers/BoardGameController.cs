@@ -53,14 +53,18 @@ namespace BGGPlusPlus.API.Controllers
             return Ok(publishers.ToList());
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("searchboardgames")]
-        public IActionResult SearchBoardGames()
+        public IActionResult SearchBoardGames(int id)
         {
-            var test = new BGGApiService(_dbContext);
-
-            throw new NotImplementedException();
-
+            return Ok(_dbContext.Set<Games>().Find(id));
         }
+
+        //[HttpGet]
+        //[Route("searchboardgames")]
+        //public IActionResult SearchBoardGames(int id)
+        //{
+        //    return Ok(_dbContext.Set<Games>().Find(id));
+        //}
     }
 }
